@@ -1,0 +1,14 @@
+{
+  "name": "inteligencia-artificial",
+  "version": "1.0.0",
+  "description": "PIA para materia de inteligencia artificial",
+  "main": "index.ts",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "asdex.dev",
+  "license": "ISC",
+  "dependencies": {
+    "graphlib": "^2.1.8"
+  }
+}
