@@ -2,6 +2,7 @@ const readline = require('readline');
 const { makeGraph} = require('./createGraph')
 const { dfsMethod } = require('../algorithms/dfs');
 const { bfsMethod } = require('../algorithms/bfs');
+const { minimax } = require('../algorithms/minimax');
 
 function menu(){
 
@@ -16,10 +17,14 @@ function menu(){
         const method = parseInt(selectedMethod);
         if (options.includes(method)) {
             const graph = defGraph();
+            console.clear();
             if(method == 1){
                 dfsMethod(graph,'A','C');
             }else if(method == 2){
                 bfsMethod(graph, 'A', 'D');
+            }else if(method == 3){
+                const gameTheoryGraph = 
+                minimax(graph);
             }
         } else {
             console.log('Método no válido. Por favor, seleccione un método válido.');

@@ -5,7 +5,6 @@ function bfsMethod(graph, initialNode, finalNode){
     routes(graph, stack, finalNode)
 }
 
-
 function routes(graph, stack, finalNode){
     let found = false
     while(!found){

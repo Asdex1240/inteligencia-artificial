@@ -1,7 +1,6 @@
 let path = []
 
 function dfsMethod(graph, initialNode, finalNode){
-    console.clear();
     console.log(`Iniciamos en el nodo ${initialNode}`);
     routes(initialNode, graph, finalNode);
 }

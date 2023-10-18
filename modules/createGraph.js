@@ -13,6 +13,10 @@ function makeGraph(nodes, edges){
     return graph;
 }
 
+function gameTheoryGraph(numNodes){
+    
+}
+
 module.exports = {
     makeGraph
   };
