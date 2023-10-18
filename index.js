@@ -1,5 +1,6 @@
 const { makeGraph } = require('./modules/createGraph');
-const { dfsMethod } = require('./algorithms/dfs')
+const { dfsMethod } = require('./algorithms/dfs');
+const { bfsMethod } = require('./algorithms/bfs')
 const readline = require('readline');
 
 function menu(){
@@ -20,9 +21,11 @@ function menu(){
     rl.question('Ingrese el número del método: ', (selectedMethod) => {
         const method = parseInt(selectedMethod);
         if (options.includes(method)) {
+            const graph = defGraph();
             if(method == 1){
-                const graph = defGraph();
                 dfsMethod(graph,'A','C');
+            }else if(method == 2){
+                bfsMethod(graph, 'A', 'D');
             }
         } else {
             console.log('Método no válido. Por favor, seleccione un método válido.');
