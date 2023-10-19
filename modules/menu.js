@@ -24,7 +24,7 @@ function menu(){
                 bfsMethod(graph, 'A', 'D');
             }else if(method == 3){
                 const graph = defGraphWeigth()
-                minimax(graph);
+                minimax(graph, 'A');
             }
         } else {
             console.log('Método no válido. Por favor, seleccione un método válido.');

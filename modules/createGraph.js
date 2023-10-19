@@ -18,7 +18,6 @@ function gameTheoryGraph(nodes, edges){
     nodes.forEach(node => graph.setNode(node));
     edges.forEach(edge => {
         const {source, target, weigth} = edge;
-        console.log(edge)
         graph.setEdge(source, target, weigth)
     })
     return graph;
