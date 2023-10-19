@@ -1,19 +1,19 @@
 let path = [];
 
 function bfsMethod(graph, initialNode, finalNode){
-    let stack = [initialNode]; 
-    routes(graph, stack, finalNode)
+    let queues = [initialNode]; 
+    routes(graph, queues, finalNode)
 }
 
-function routes(graph, stack, finalNode){
+function routes(graph, queues, finalNode){
     let found = false
     while(!found){
-        if(stack.length > 0 ){
-            let firstNode = stack.shift();
+        if(queues.length > 0 ){
+            let firstNode = queues.shift();
             path.push(`${firstNode} ->`);
             if(firstNode !== finalNode){
                 sucessors = graph.successors(firstNode)
-                stack = stack.concat(sucessors)
+                queues = queues.concat(sucessors)
                 console.log(`Nodo Actual: ${firstNode}, nodo a encontrar: ${finalNode}`);
             }else{
                 console.log('Nodo Encontrado');

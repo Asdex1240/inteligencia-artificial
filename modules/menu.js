@@ -1,5 +1,5 @@
 const readline = require('readline');
-const { makeGraph} = require('./createGraph')
+const { makeGraph, gameTheoryGraph} = require('./createGraph')
 const { dfsMethod } = require('../algorithms/dfs');
 const { bfsMethod } = require('../algorithms/bfs');
 const { minimax } = require('../algorithms/minimax');
@@ -23,7 +23,7 @@ function menu(){
             }else if(method == 2){
                 bfsMethod(graph, 'A', 'D');
             }else if(method == 3){
-                const gameTheoryGraph = 
+                const graph = defGraphWeigth()
                 minimax(graph);
             }
         } else {
@@ -58,6 +58,19 @@ function defGraph(){
         { source: 'C', target: 'G',  },
     ];
     return makeGraph(nodes, edges);
+}
+
+function defGraphWeigth(){
+    const nodes = ['A', 'B', 'C', 'D','E','F'];
+    const edges = [
+        { source: 'A', target: 'B',  weigth: null },
+        { source: 'A', target: 'C',  weigth: null },
+        { source: 'B', target: 'D',  weigth: 3 },
+        { source: 'B', target: 'E',  weigth: 4 },
+        { source: 'C', target: 'F',  weigth: 5 },
+        { source: 'C', target: 'G',  weigth: 6 },
+    ];
+    return gameTheoryGraph(nodes, edges);
 }
 
 
