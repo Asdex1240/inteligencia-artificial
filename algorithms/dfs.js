@@ -1,9 +1,12 @@
 let stack = [];
 let path = [];
+let visited = {};
 
 function dfsMethod(graph, initialNode, finalNode){
     console.log(`Iniciamos en el nodo ${initialNode}`);
     stack.push(initialNode);
+    visited[initialNode] = 0;
+    console.log(visited)
     routes(graph, finalNode);
 }
 
@@ -16,11 +19,17 @@ function routes(graph, finalNode){
             if(firstNode == finalNode){
                 console.log('Nodo Encontrado');
                 console.log('Ruta: ', path);
+                console.log(`Profundidad del nodo ${finalNode}:`, visited[finalNode]);
                 found = true;
             }else{
                 const successors = graph.successors(firstNode);
-                //console.log({firstNode, stack} )
-                stack = successors.concat(stack);
+                successors.forEach(successor => {
+                    if (!visited[successor]) {
+                        stack.push(successor);
+                        visited[successor] = visited[firstNode] + 1;
+                        console.log({visited})
+                    }
+                })  
             }
         }else{
             console.log('Nodo no encontrado en el grafo');
