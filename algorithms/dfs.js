@@ -15,9 +15,9 @@ function routes(graph, finalNode){
     let found = false
     while(!found){
         if(stack.length > 0){
-            let firstNode = stack.shift();
-            path.push(`${firstNode} ->`);
-            if(firstNode == finalNode){
+            let selectedNode = stack.shift();
+            path.push(`${selectedNode} ->`);
+            if(selectedNode == finalNode){
                 const depthFinalNode = visited.get(finalNode)
                 console.log('Nodo Encontrado');
                 console.log(`Ruta: ${path}`);
@@ -25,11 +25,11 @@ function routes(graph, finalNode){
                 depth = 0;
                 found = true;
             }else{
-                const successors = graph.successors(firstNode);
+                const successors = graph.successors(selectedNode);
                 console.log({successors, stack});
 
-                if(visited.has(firstNode)){
-                    depth = visited.get(firstNode) + 1;
+                if(visited.has(selectedNode)){
+                    depth = visited.get(selectedNode) + 1;
                 }
                 addToMap(successors, depth);
                 stack = successors.concat(stack);

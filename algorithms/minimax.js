@@ -1,39 +1,43 @@
 let stack = [];
 let path = [];
-let visited = {};
+let visited = new Map();
+let depth = 0;
 
 function minimax(graph, initialNode){
-    visited[initialNode] = 0;
+    
     stack.push(initialNode);
-    routes(graph, 'G')
+    visited.set(initialNode, depth);
+    routes(graph);
 }
 
-function routes(graph, finalNode){
+function routes(graph){
     let found = false
     while(!found){
         if(stack.length > 0){
-            let firstNode = stack.shift();
-            path.push(`${firstNode} ->`);
-            if(firstNode == finalNode){
-                console.log('Nodo Encontrado');
-                console.log('Ruta: ', path);
-                console.log(`Profundidad del nodo ${finalNode}:`, visited[finalNode]);
-                found = true;
-            }else{
-                const successors = graph.successors(firstNode);
-                successors.forEach(successor => {
-                    if (!visited[successor]) {
-                        stack.push(successor);
-                        visited[successor] = visited[firstNode] + 1;
-                        console.log({visited})
-                    }
-                })  
+            let selectedNode = stack.shift();
+            path.push(`${selectedNode} ->`);
+            const successors = graph.successors(selectedNode);
+
+            if(visited.has(selectedNode)){
+                depth = visited.get(selectedNode) + 1;
             }
+            addToMap(successors, depth);
+            stack = successors.concat(stack);
         }else{
-            console.log('Nodo no encontrado en el grafo');
+            console.log('Recorrido terminado');
             found = true;
         }
-    }   
+    }
+    console.log(`Ruta: ${path}`);
+    console.log(`Profundidad: ${depth}`); 
+}
+
+function addToMap(nodes, depth){
+    for(const node of nodes){
+        if(!visited.has(node)){
+            visited.set(node, depth);
+        }
+    }
 }
 
 module.exports = { minimax }
