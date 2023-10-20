@@ -1,32 +1,32 @@
-let path = []
+let stack = [];
+let path = [];
 
 function dfsMethod(graph, initialNode, finalNode){
     console.log(`Iniciamos en el nodo ${initialNode}`);
-    routes(initialNode, graph, finalNode);
+    stack.push(initialNode);
+    routes(graph, finalNode);
 }
 
-function routes(node, graph, finalNode){
-    console.log(`Nodo actual: ${node}, nodo a encontrar: ${finalNode}`);
-    if(node == finalNode){
-        path.push(node)
-        console.log('Nodo encontrado');
-        console.log('Ruta: ',path);
-        return 0;
-    }else{
-        path.push(`${node}->`)
-        const neihgbors = graph.successors(node);
-        if(neihgbors.length > 0){
-            console.log(`Sucesores de ${node}: ${neihgbors}`);
-            for(const neighbor of neihgbors){
-                const result = routes(neighbor, graph, finalNode);
-                if(result == 0){
-                    return 0;
-                }
+function routes(graph, finalNode){
+    let found = false
+    while(!found){
+        if(stack.length > 0){
+            let firstNode = stack.shift();
+            path.push(`${firstNode} ->`);
+            if(firstNode == finalNode){
+                console.log('Nodo Encontrado');
+                console.log('Ruta: ', path);
+                found = true;
+            }else{
+                const successors = graph.successors(firstNode);
+                //console.log({firstNode, stack} )
+                stack = successors.concat(stack);
             }
         }else{
-            console.log(`${node} no tiene sucesores, volvemos a nodo padre de ${node}`);
+            console.log('Nodo no encontrado en el grafo');
+            found = true;
         }
-    }
+    }   
 }
 
 module.exports = {
