@@ -16,12 +16,26 @@ function routes(graph){
         if(stack.length > 0){
             let selectedNode = stack.shift();
             path.push(`${selectedNode} ->`);
+
             const successors = graph.successors(selectedNode);
 
             if(visited.has(selectedNode)){
                 depth = visited.get(selectedNode) + 1;
             }
             addToMap(successors, depth);
+
+            const weight = checkWeight(graph, selectedNode, successors);
+            if(weight){
+                console.log(`Hay peso en ${selectedNode} y ${successors}`);
+                const bestChoice = visited.get(selectedNode) % 2;
+                if(bestChoice == 0){
+                    console.log('Aplicar Max')
+                }else{
+                    console.log('Aplicar Min')
+                }
+                found = true
+            }
+
             stack = successors.concat(stack);
         }else{
             console.log('Recorrido terminado');
@@ -29,7 +43,21 @@ function routes(graph){
         }
     }
     console.log(`Ruta: ${path}`);
-    console.log(`Profundidad: ${depth}`); 
+    console.log(`Profundidad: ${depth - 1}`); 
+}
+
+function checkWeight(graph, selectedNode, successors){
+
+    if(successors.length == 0){
+        return false;
+    }
+    for(const successor of successors){
+        const weight = graph.edge(selectedNode, successor)
+        if(!weight || successors.length == 0){
+            return false;
+        }
+    }
+    return true;
 }
 
 function addToMap(nodes, depth){
@@ -41,17 +69,3 @@ function addToMap(nodes, depth){
 }
 
 module.exports = { minimax }
-
-/*
-const weightAB = graph.edge(firstNode, secondNode);
-console.log(`Peso de la arista ${firstNode} -> ${secondNode}:`, weightAB);
-//3 > null = true; 3 < null = false; 
-console.log(3 < null)
-
-           const weight = graph.edge(initialNode, neighbor);
-            if(weight){
-                console.log(`Peso de la arista ${initialNode} -> ${neighbor}:`, weight);
-            }else{
-                console.log('No hay peso asignado');
-                stack.unshift(neighbor);
-*/
