@@ -1,7 +1,7 @@
 const readline = require('readline');
-const { makeGraph, gameTheoryGraph} = require('./createGraph')
 const { dfsMethod } = require('../algorithms/dfs');
 const { bfsMethod } = require('../algorithms/bfs');
+const { defineGraph } = require('../modules/defineGraph')
 const { minimax } = require('../algorithms/minimax');
 
 function menu(){
@@ -16,14 +16,14 @@ function menu(){
     rl.question('Ingrese el número del método: ', (selectedMethod) => {
         const method = parseInt(selectedMethod);
         if (options.includes(method)) {
-            const graph = defGraph();
+            const graph = defineGraph('withoutWeigth');
             console.clear();
             if(method == 1){
-                dfsMethod(graph,'A','C');
+                dfsMethod(graph,'A','I');
             }else if(method == 2){
-                bfsMethod(graph, 'A', 'D');
+                bfsMethod(graph, 'A', 'I');
             }else if(method == 3){
-                const graph = defGraphWeigth()
+                const graph = defineGraph('withWeigth')
                 minimax(graph, 'A');
             }
         } else {
@@ -46,33 +46,6 @@ function message(){
     return options;
 
 }
-
-function defGraph(){
-    const nodes = ['A', 'B', 'C', 'D','E','F'];
-    const edges = [
-        { source: 'A', target: 'B',  },
-        { source: 'A', target: 'C',  },
-        { source: 'B', target: 'D',  },
-        { source: 'B', target: 'E',  },
-        { source: 'C', target: 'F',  },
-        { source: 'C', target: 'G',  },
-    ];
-    return makeGraph(nodes, edges);
-}
-
-function defGraphWeigth(){
-    const nodes = ['A', 'B', 'C', 'D','E','F'];
-    const edges = [
-        { source: 'A', target: 'B',  weigth: null },
-        { source: 'A', target: 'C',  weigth: null },
-        { source: 'B', target: 'D',  weigth: 3 },
-        { source: 'B', target: 'E',  weigth: 4 },
-        { source: 'C', target: 'F',  weigth: 5 },
-        { source: 'C', target: 'G',  weigth: 6 },
-    ];
-    return gameTheoryGraph(nodes, edges);
-}
-
 
 module.exports = {
     menu
