@@ -1,8 +1,10 @@
 let stack = [];
 let path = [];
+let visited = {};
+
 function minimax(graph, initialNode){
     stack.push(initialNode);
-    routes(graph, 'G' )
+    routes(graph)
 }
 
 function routes(graph, finalNode){
@@ -11,15 +13,8 @@ function routes(graph, finalNode){
         if(stack.length > 0){
             let firstNode = stack.shift();
             path.push(`${firstNode} ->`);
-            if(firstNode == finalNode){
-                console.log('Nodo Encontrado');
-                console.log('Ruta: ', path);
-                found = true;
-            }else{
-                const successors = graph.successors(firstNode);
-                //console.log({firstNode, stack} )
-                stack = successors.concat(stack);
-            }
+            const successors = graph.successors(firstNode);
+            stack = successors.concat(stack);
 
         }else{
             console.log('Nodo no encontrado en el grafo');
