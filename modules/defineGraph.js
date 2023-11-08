@@ -1,4 +1,11 @@
-const { makeGraph, gameTheoryGraph} = require('./createGraph')
+const { makeGraph} = require('./createGraph')
+
+class Node {
+    constructor(value, children = []) {
+      this.value = value;
+      this.children = children;
+    }
+}
 
 function defineGraph(type){
     let graph;
@@ -10,6 +17,20 @@ function defineGraph(type){
     return graph;
 }
 
+function defGraphWeigth(){
+    const nodeA = new Node("A");
+    const nodeB = new Node("B");
+    const nodeC = new Node("C");
+    const nodeD = new Node("D");
+    const nodeE = new Node("E")
+    //const nodeC = new Node("C", [new Node(1), new Node(9)]);
+    nodeA.children = [nodeB, nodeC];
+    nodeB.children = [nodeD, nodeE]
+    nodeC.children = [new Node(1), new Node(9)]
+    nodeD.children = [new Node(5), new Node(3)]
+    nodeE.children = [new Node(2), new Node(4)]
+    return nodeA
+}
 
 function defGraph(){
     const nodes = ['A', 'B', 'C', 'D','E','F'];
@@ -26,19 +47,6 @@ function defGraph(){
 
     ];
     return makeGraph(nodes, edges);
-}
-
-function defGraphWeigth(){
-    const nodes = ['A', 'B', 'C', 'D','E','F'];
-    const edges = [
-        { source: 'A', target: 'B',  weigth: null },
-        { source: 'A', target: 'C',  weigth: null },
-        { source: 'B', target: 'D',  weigth: 3 },
-        { source: 'B', target: 'E',  weigth: 4 },
-        { source: 'C', target: 'F',  weigth: 5 },
-        { source: 'C', target: 'G',  weigth: 6 },
-    ];
-    return gameTheoryGraph(nodes, edges);
 }
 
 module.exports = {

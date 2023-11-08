@@ -24,7 +24,8 @@ function menu(){
                 bfsMethod(graph, 'A', 'I');
             }else if(method == 3){
                 const graph = defineGraph('withWeigth')
-                minimax(graph, 'A');
+                const bestValue = minimax(graph, 3, true);
+                console.log(bestValue)  // Profundidad 2, jugador maximizador
             }
         } else {
             console.log('Método no válido. Por favor, seleccione un método válido.');
