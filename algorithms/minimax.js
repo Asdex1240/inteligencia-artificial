@@ -1,4 +1,8 @@
-function minimaxMethod(node, depth){
+const { findDepth } = require('../modules/defineGraph')
+
+function minimaxMethod(node){
+  const depth = findDepth(node)
+  console.log('Profundidad: ', depth)
   const bestValue = minimax(node, depth, true);
   console.log(`El mejor valor es ${bestValue}`)
 }

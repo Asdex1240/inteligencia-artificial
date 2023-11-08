@@ -24,9 +24,9 @@ function menu(){
             }else if(method == 2){
                 bfsMethod(graph, 'A', 'I');
             }else if(method == 3){
-                minimaxMethod(defineGraph('withWeigth'), 3);
-            }else if(method == '4'){
-                alphaBetaMethod(defineGraph('withWeigth'),3)
+                minimaxMethod(defineGraph('withWeigth'));
+            }else if(method == 4){
+                alphaBetaMethod(defineGraph('withWeigth'))
             }
         } else {
             console.log('Método no válido. Por favor, seleccione un método válido.');

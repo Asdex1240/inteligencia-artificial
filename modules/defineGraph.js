@@ -32,6 +32,21 @@ function defGraphWeigth(){
     return nodeA
 }
 
+function findDepth(node) {
+    if (node.children.length === 0) {
+      return 1; // Si el nodo no tiene hijos, su profundidad es 1.
+    }
+  
+    let maxChildDepth = 0;
+  
+    for (const child of node.children) {
+      const childDepth = findDepth(child);
+      maxChildDepth = Math.max(maxChildDepth, childDepth);
+    }
+  
+    return 1 + maxChildDepth;
+  }
+
 function defGraph(){
     const nodes = ['A', 'B', 'C', 'D','E','F'];
     const edges = [
@@ -50,5 +65,5 @@ function defGraph(){
 }
 
 module.exports = {
-    defineGraph
+    defineGraph, findDepth
 }
