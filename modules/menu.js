@@ -2,7 +2,8 @@ const readline = require('readline');
 const { dfsMethod } = require('../algorithms/dfs');
 const { bfsMethod } = require('../algorithms/bfs');
 const { defineGraph } = require('../modules/defineGraph')
-const { minimax } = require('../algorithms/minimax');
+const { minimaxMethod } = require('../algorithms/minimax');
+const { alphaBetaMethod } = require('../algorithms/alphabeta')
 
 function menu(){
 
@@ -23,9 +24,9 @@ function menu(){
             }else if(method == 2){
                 bfsMethod(graph, 'A', 'I');
             }else if(method == 3){
-                const graph = defineGraph('withWeigth')
-                const bestValue = minimax(graph, 3, true);
-                console.log(bestValue)  // Profundidad 2, jugador maximizador
+                minimaxMethod(defineGraph('withWeigth'), 3);
+            }else if(method == '4'){
+                alphaBetaMethod(defineGraph('withWeigth'),3)
             }
         } else {
             console.log('Método no válido. Por favor, seleccione un método válido.');
@@ -36,8 +37,8 @@ function menu(){
 }
 
 function message(){
-    const options = [1,2,3];
-    const algorithms = ['DFS','BFS','Minimax'];
+    const options = [1,2,3,4];
+    const algorithms = ['DFS','BFS','Minimax', 'Alpha Beta', 'A*'];
     let welcomeMessage = 'Seleccione el algoritmo:  \n';
     for(let i = 0; i<algorithms.length; i++){
         let algorithm = `${i+1}. ${algorithms[i]} \n`;

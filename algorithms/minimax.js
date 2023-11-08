@@ -1,3 +1,8 @@
+function minimaxMethod(node, depth){
+  const bestValue = minimax(node, depth, true);
+  console.log(`El mejor valor es ${bestValue}`)
+}
+
 
 function minimax(node, depth, maximizingPlayer) {
   if (depth === 0 || node.children.length === 0) {
@@ -28,5 +33,5 @@ function minimax(node, depth, maximizingPlayer) {
   }
   
   module.exports = {
-    minimax
+    minimaxMethod
   }
