@@ -17,25 +17,8 @@ function menu(){
     rl.question('Ingrese el número del método: ', (selectedMethod) => {
         const method = parseInt(selectedMethod);
         if (options.includes(method)) {
-            const graphWithout = defineGraph('withoutWeigth');
-            const graphWith = defineGraph('withWeigth');
             console.clear();
-            switch (method) {
-                case 1:
-                    dfsMethod(graphWithout,'A','I');
-                    break;
-                case 2:
-                    bfsMethod(graphWithout,'A','I');
-                    break;
-                case 3:
-                    minimaxMethod(graphWith)
-                    break;
-                case 4:
-                    alphaBetaMethod(graphWith)
-                    break;
-                default:
-                    break;
-            }
+            methods(method)
         } else {
             console.log('Método no válido. Por favor, seleccione un método válido.');
         }
@@ -45,7 +28,7 @@ function menu(){
 }
 
 function message(){
-    const options = [1,2,3,4];
+    const options = [1,2,3,4,5];
     const algorithms = ['DFS','BFS','Minimax', 'Alpha Beta', 'A*'];
     let welcomeMessage = 'Seleccione el algoritmo:  \n';
     for(let i = 0; i<algorithms.length; i++){
@@ -55,6 +38,27 @@ function message(){
     console.log(welcomeMessage);
     return options;
 
+}
+
+function methods(method){
+    const graphWithout = defineGraph('withoutWeigth');
+    const graphWith = defineGraph('withWeigth');
+    switch (method) {
+        case 1:
+            dfsMethod(graphWithout,'A','I');
+            break;
+        case 2:
+            bfsMethod(graphWithout,'A','I');
+            break;
+        case 3:
+            minimaxMethod(graphWith)
+            break;
+        case 4:
+            alphaBetaMethod(graphWith)
+            break;
+        default:
+            break;
+    }
 }
 
 module.exports = {
