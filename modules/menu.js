@@ -17,16 +17,24 @@ function menu(){
     rl.question('Ingrese el número del método: ', (selectedMethod) => {
         const method = parseInt(selectedMethod);
         if (options.includes(method)) {
-            const graph = defineGraph('withoutWeigth');
+            const graphWithout = defineGraph('withoutWeigth');
+            const graphWith = defineGraph('withWeigth');
             console.clear();
-            if(method == 1){
-                dfsMethod(graph,'A','I');
-            }else if(method == 2){
-                bfsMethod(graph, 'A', 'I');
-            }else if(method == 3){
-                minimaxMethod(defineGraph('withWeigth'));
-            }else if(method == 4){
-                alphaBetaMethod(defineGraph('withWeigth'))
+            switch (method) {
+                case 1:
+                    dfsMethod(graphWithout,'A','I');
+                    break;
+                case 2:
+                    bfsMethod(graphWithout,'A','I');
+                    break;
+                case 3:
+                    minimaxMethod(graphWith)
+                    break;
+                case 4:
+                    alphaBetaMethod(graphWith)
+                    break;
+                default:
+                    break;
             }
         } else {
             console.log('Método no válido. Por favor, seleccione un método válido.');

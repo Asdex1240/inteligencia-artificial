@@ -4,7 +4,7 @@ let visited = new Map();
 let depth = 0;
 
 function dfsMethod(graph, initialNode, finalNode){
-    console.log(`Iniciamos en el nodo ${initialNode}`);
+    console.log(`Iniciamos en el nodo ${initialNode} hasta ${finalNode}`);
     stack.push(initialNode);
     visited.set(initialNode, depth);
     routes(graph, finalNode);
@@ -26,13 +26,12 @@ function routes(graph, finalNode){
                 found = true;
             }else{
                 const successors = graph.successors(selectedNode);
-                console.log({successors, stack});
-
                 if(visited.has(selectedNode)){
                     depth = visited.get(selectedNode) + 1;
                 }
                 addToMap(successors, depth);
                 stack = successors.concat(stack);
+                console.log({selectedNode, successors, stack});
             }
         }else{
             console.log('Nodo no encontrado en el grafo');
