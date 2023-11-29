@@ -29,7 +29,7 @@ function menu(){
 
 function message(){
     const options = [1,2,3,4,5];
-    const algorithms = ['DFS','BFS','Minimax', 'Alpha Beta', 'A*'];
+    const algorithms = ['DFS','BFS','Minimax', 'Alpha Beta', 'DFS limitado', 'A*'];
     let welcomeMessage = 'Seleccione el algoritmo:  \n';
     for(let i = 0; i<algorithms.length; i++){
         let algorithm = `${i+1}. ${algorithms[i]} \n`;
@@ -45,7 +45,7 @@ function methods(method){
     const graphWith = defineGraph('withWeigth');
     switch (method) {
         case 1:
-            dfsMethod(graphWithout,'A','I');
+            dfsMethod(graphWithout,'A','I', Infinity);
             break;
         case 2:
             bfsMethod(graphWithout,'A','I');
@@ -56,6 +56,8 @@ function methods(method){
         case 4:
             alphaBetaMethod(graphWith)
             break;
+        case 5: 
+            dfsMethod(graphWithout, 'A', 'I', 1)
         default:
             break;
     }
