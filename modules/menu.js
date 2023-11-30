@@ -58,6 +58,8 @@ function methods(method){
             break;
         case 5: 
             dfsMethod(graphWithout, 'A', 'I', 1)
+            break;
+        
         default:
             break;
     }
