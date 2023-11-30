@@ -61,7 +61,7 @@ function methods(method){
             dfsMethod(graphWithout, 'A', 'I', 1)
             break;
         case 6:
-            idsMethod(graphWithout, 'A', 'I',2)
+            idsMethod(graphWithout, 'A', 'I')
         default:
             break;
     }

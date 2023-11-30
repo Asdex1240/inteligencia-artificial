@@ -1,20 +1,15 @@
-function idsMethod(graph, initialNode, finalNode, depthLimit) {
-    console.log('Estás en el IDS');
-    let depth = 0;
-    while (depth <= depthLimit) {
-        console.log({depth, depthLimit})
-      const result = depthLimitedSearch(graph, initialNode, finalNode, depthLimit);
-      if (result.found) {
+function idsMethod(graph, initialNode, finalNode) {
+    console.log('Estás en el IDS');   
+    const result = depthLimitedSearch(graph, initialNode, finalNode);
+    if (result.found) {
         console.log('Nodo encontrado');
         console.log('Ruta:', result.path.join(' -> '));
         return;
-      }
-      depth++;
     }
-    console.log('Nodo no encontrado en el límite de profundidad dado.');
+    console.log('Nodo no encontrado.');
   }
   
-  function depthLimitedSearch(graph, currentNode, finalNode, depthLimit) {
+  function depthLimitedSearch(graph, currentNode, finalNode) {
     let explored = [];
     let frontier = [{ node: currentNode, path: [currentNode] }];
   
@@ -28,7 +23,7 @@ function idsMethod(graph, initialNode, finalNode, depthLimit) {
           return { found: true, path };
         }
   
-        if (depthLimit > 0) {
+        
           const successors = graph.successors(node) || [];
           const newPaths = successors.map(s => ({ node: s, path: path.concat(s) }));
           frontier = frontier.concat(newPaths.filter(({ node }) => !explored.includes(node)));
@@ -37,7 +32,7 @@ function idsMethod(graph, initialNode, finalNode, depthLimit) {
           console.log('Explored:', explored);
           console.log('Frontier:', frontier.map(({ node }) => node));
           
-        }
+        
       }
     }
     return { found: false };
