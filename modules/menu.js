@@ -4,6 +4,7 @@ const { bfsMethod } = require('../algorithms/bfs');
 const { defineGraph } = require('../modules/defineGraph')
 const { minimaxMethod } = require('../algorithms/minimax');
 const { alphaBetaMethod } = require('../algorithms/alphabeta')
+const { idsMethod } = require('../algorithms/ids')
 
 function menu(){
 
@@ -28,8 +29,8 @@ function menu(){
 }
 
 function message(){
-    const options = [1,2,3,4,5];
-    const algorithms = ['DFS','BFS','Minimax', 'Alpha Beta', 'DFS limitado', 'A*'];
+    const options = [1,2,3,4,5,6];
+    const algorithms = ['DFS','BFS','Minimax', 'Alpha Beta', 'DFS limitado', 'IDS'];
     let welcomeMessage = 'Seleccione el algoritmo:  \n';
     for(let i = 0; i<algorithms.length; i++){
         let algorithm = `${i+1}. ${algorithms[i]} \n`;
@@ -59,7 +60,8 @@ function methods(method){
         case 5: 
             dfsMethod(graphWithout, 'A', 'I', 1)
             break;
-        
+        case 6:
+            idsMethod(graphWithout, 'A', 'I',2)
         default:
             break;
     }
