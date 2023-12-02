@@ -64,6 +64,22 @@ function defGraph(){
     return makeGraph(nodes, edges);
 }
 
+function astartGraph(){
+    // Definición del grafo [G,H]
+    return {
+    'S': {'A': [5, 7], 'B': [9, 3], 'D': [6, 6]},
+    'A': {'B': [3, 3], 'G1': [9, 0]},
+    'B': {'A': [2, 7], 'C': [1, 4]},
+    'C': {'S': [6, 4], 'G2': [5, 0], 'F': [7, 6]},
+    'D': {'S': [1, 5], 'C': [2, 4], 'E': [2, 5]},
+    'E': {'G3': [7, 0]},
+    'F': {'G3': [8, 0]},
+    'G1': {},
+    'G2': {},
+    'G3': {}
+  };
+}
+
 module.exports = {
-    defineGraph, findDepth
+    defineGraph, findDepth, astartGraph
 }

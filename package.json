@@ -9,6 +9,7 @@
   "author": "asdex.dev",
   "license": "ISC",
   "dependencies": {
-    "graphlib": "^2.1.8"
+    "graphlib": "^2.1.8",
+    "priorityqueuejs": "^2.0.0"
   }
 }
