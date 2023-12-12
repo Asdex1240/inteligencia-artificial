@@ -60,4 +60,12 @@ let beamWidth = 3;
 let maxIterations = 5;
 
 // Ejecutar Búsqueda Local en Haz
-localBeamSearch(graph, startState, goalState, beamWidth, maxIterations);
+
+function localBeamMethod(){
+    localBeamSearch(graph, startState, goalState, beamWidth, maxIterations);
+
+}
+
+module.exports = {
+    localBeamMethod
+}

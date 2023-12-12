@@ -6,7 +6,9 @@ const { minimaxMethod } = require('../algorithms/minimax');
 const { alphaBetaMethod } = require('../algorithms/alphabeta')
 const { idsMethod } = require('../algorithms/ids')
 const { astarMethod } = require('../algorithms/astar')
-
+const { ucsMethod } = require('../algorithms/ucs')
+const {localBeamMethod } = require('../algorithms/localbeamsearch')
+const { greddyMethod } = require('../algorithms/greddy')
 function menu(){
 
     const options = message();
@@ -30,8 +32,8 @@ function menu(){
 }
 
 function message(){
-    const options = [1,2,3,4,5,6,7,8];
-    const algorithms = ['DFS','BFS','Minimax', 'Alpha Beta', 'DFS limitado', 'IDS', 'A*', 'UCS'];
+    const options = [1,2,3,4,5,6,7,8,9,10];
+    const algorithms = ['DFS','BFS','Minimax', 'Alpha Beta', 'DFS limitado', 'IDS', 'A*', 'UCS', 'Local Beam Search', 'Greddy'];
     let welcomeMessage = 'Seleccione el algoritmo:  \n';
     for(let i = 0; i<algorithms.length; i++){
         let algorithm = `${i+1}. ${algorithms[i]} \n`;
@@ -67,7 +69,22 @@ function methods(method){
         
         case 7: 
             astarMethod(astartGraph(), 'S', 'G3')
+            break;
+        
+        case 8:
+            ucsMethod()
+            break;
+
+        case 9:
+            localBeamMethod()
+            break;
+        
+        case 10:
+            greddyMethod()
+            break;
+
         default:
+            console.log('No está dentro de la lista');
             break;
     }
 }

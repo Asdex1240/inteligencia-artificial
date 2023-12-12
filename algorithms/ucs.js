@@ -69,4 +69,12 @@ let startNode = 'A';
 let goalNode = 'F';
 
 // Llamada a la función findShortestPath
-findShortestPath(weightedGraph, startNode, goalNode);
+
+function ucsMethod(){
+    findShortestPath(weightedGraph, startNode, goalNode);
+}
+
+module.exports = {
+    ucsMethod
+}
+
