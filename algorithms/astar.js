@@ -1,8 +1,6 @@
 const PriorityQueue = require('priorityqueuejs');
 
-function astarMethod(graph, startNode, endNode){
-    
-    
+function astarMethod(graph, startNode, endNode){    
     const results = astar(graph, startNode, endNode);
     const { fDistance, cameFrom, gDistance } = results;
     printResults(fDistance, cameFrom, gDistance, endNode, startNode);

@@ -39,14 +39,14 @@ let graph = {
     'G': {}
 };
 
-// Nodo inicial y objetivo
+
 let startNode = 'A';
 let goalNode = 'F';
 
-// Obtener el camino y el costo total utilizando greedy local search
+
 let result = greedyLocalSearch(graph, startNode, goalNode);
 
-// Imprimir el resultado
+
 if (result.path.length > 0) {
     console.log(`Camino: ${result.path.join("->")}`);
     console.log(`Costo Total: ${result.totalCost}`);
@@ -57,5 +57,3 @@ if (result.path.length > 0) {
 module.exports = {
     greddyMethod
 }
-
-
